@@ -1,0 +1,8 @@
+:root {
+    --white: oklch(0.997 0 0);
+    --grey: oklch(0.8853 0 0);
+    --light-green: oklch(0.9197 0.1072 153.97);
+    --green: oklch(0.8115 0.1472 150.83);
+    --light-black: oklch(0.2775 0.0309 232.41);
+    --black: oklch(0.129 0.0093 211.36);
+}
