@@ -1,4 +1,6 @@
+@import "./globals.css";
 @import "tailwindcss";
+@import "tw-animate-css";
 
 html,
 body {
@@ -6,6 +8,31 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+.font-lato {
+  font-family: "Lato", sans-serif;
+}
+.font-noto {
+  font-family: "Noto Sans", sans-serif;
+}
+.font-spectralsc {
+  font-family: "Spectral SC", serif;
+}
+.font-caesar {
+  font-family: "Caesar Dressing", system-ui;
+}
+.crimson-text {
+  font-family: "Crimson Text";
+}
+
+.scroll-down-hover {
+  padding-bottom: 10rem;
+  display: inline-block;
+  transition: color 0.25s;
+  color: var(--green);
+}
+.scroll-down-hover:hover {
+  color: var(--light-green);
 }
 
 @theme inline {
@@ -124,4 +151,4 @@ body {
   }
 }
 
-@import "./globals.css";
+@custom-variant dark (&:is(.dark *));

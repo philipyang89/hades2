@@ -1,7 +1,8 @@
 import type { Config } from "tailwindcss";
 
-export default {
-  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
+const config: Config = {
+  content: ["./app/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -15,8 +16,15 @@ export default {
           "Segoe UI Symbol",
           "Noto Color Emoji",
         ],
+        lato: ["Lato", "sans-serif"],
+        noto: ['"Noto Sans"', "sans-serif"],
+        caesar: ['"Caesar Dressing"', "system-ui"],
+        crimson: ['"Crimson Text"', "serif"],
+        safelist: ['font-spectralsc'],
       },
     },
   },
   plugins: [],
-} satisfies Config;
+};
+
+export default config;
