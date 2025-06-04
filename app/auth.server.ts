@@ -5,6 +5,9 @@ import { redirect } from "@remix-run/node";
 
 // Registration: create user and login
 export async function register({ email, password, username }: { email: string, password: string, username: string}) {
+  if (username.length > 10) {
+    throw new Error("Username must be at most 10 characters.");
+  }
   const hashedPassword = await hash(password, 10);
   try {
     const user = await prisma.user.create({
@@ -25,12 +28,19 @@ export async function register({ email, password, username }: { email: string, p
 }
 
 // Login: check user credentials and login
-export async function login({ email, password }: { email: string, password: string }) {
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) throw new Error("Invalid email or password");
+export async function login({ identifier, password }: { identifier: string, password: string }) {
+  const user = await prisma.user.findFirst({
+    where: {
+      OR: [
+        { email: identifier },
+        { username: identifier }
+      ]
+    }
+  });
+  if (!user) throw new Error("Invalid email/username or password");
   const isValid = await compare(password, user.password);
-  if (!isValid) throw new Error("Invalid email or password");
-  return createUserSession(user.id, "/");
+  if (!isValid) throw new Error("Invalid email/username or password");
+  return await createUserSession(user.id, "/");
 }
 
 // Logout: destroy session

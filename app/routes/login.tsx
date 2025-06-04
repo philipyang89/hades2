@@ -12,14 +12,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const email = formData.get("email");
+  const identifier = formData.get("identifier");
   const password = formData.get("password");
-  if (typeof email !== "string" || typeof password !== "string") {
+  if (typeof identifier !== "string" || typeof password !== "string") {
     return json({ error: "Invalid form submission" }, { status: 400 });
   }
   try {
     // login returns a redirect response on success
-    return await login({ email, password });
+    return await login({ identifier, password });
   } catch (error: any) {
     return json({ error: error.message || "Login failed" }, { status: 400 });
   }
@@ -33,15 +33,18 @@ export default function LoginPage() {
       <h1 className="text-2xl font-bold mb-6">Login</h1>
       <Form method="post" className="flex flex-col gap-4 max-w-xs mx-auto">
         {actionData?.error && (
-          <div className="text-red-600 text-center rounded mb-2">{actionData.error}</div>
+          <div className="text-red-600 text-center rounded mb-2">
+            {actionData.error}
+          </div>
         )}
         <input
-          name="email"
-          type="email"
-          placeholder="Email"
+          name="identifier"
+          type="text"
+          placeholder="Email or Username"
           required
           className="input"
-          autoComplete="email"
+          autoComplete="username"
+          maxLength={10}
         />
         <input
           name="password"

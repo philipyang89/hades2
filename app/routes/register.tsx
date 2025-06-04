@@ -17,9 +17,13 @@ export async function action({ request }: ActionFunctionArgs) {
   if (typeof email !== "string" || typeof password !== "string") {
     return json({ error: "Invalid form submission" }, { status: 400 });
   }
+  const username = formData.get("username");
+  if (typeof username !== "string" || !username.trim()) {
+  return json({ error: "Username required" }, { status: 400 });
+  }
   try {
     // register returns a redirect response on success
-    return await register({ email, password });
+    return await register({ email, password, username });
   } catch (error: any) {
     return json(
       { error: error.message || "Registration failed" },
