@@ -4,12 +4,13 @@ import { sessionStorage, commitSession, destroySession } from "app/session.serve
 import { redirect } from "@remix-run/node";
 
 // Registration: create user and login
-export async function register({ email, password }: { email: string, password: string }) {
+export async function register({ email, password, username }: { email: string, password: string, username: string}) {
   const hashedPassword = await hash(password, 10);
   try {
     const user = await prisma.user.create({
       data: {
         email,
+        username,
         password: hashedPassword,
         // role: "USER" // optional, default in your schema
       }

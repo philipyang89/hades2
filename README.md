@@ -27,7 +27,6 @@ A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CS
 3. **Set up environment variables:**
 - Copy .env.example to .env and fill in your values, e.g.:
     ```sh
-    JWT_SECRET=your_super_secret_jwt_key
     DATABASE_URL=postgresql://user:password@localhost:5432/dbname
 4. **Prepare the database:**
 - Run migrations
