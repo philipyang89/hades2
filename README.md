@@ -33,6 +33,7 @@ A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CS
 - Run migrations
     ```sh
     pnpm prisma:migrate
+    npx prisma generate
 5. **Run the development server:**
     ```sh
     pnpm dev
