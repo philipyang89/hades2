@@ -4,6 +4,9 @@ const config: Config = {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class",
   theme: {
+    colors: {
+      foo: "red",
+    },
     extend: {
       fontFamily: {
         sans: [
@@ -22,6 +25,12 @@ const config: Config = {
         crimson: ['"Crimson Text"', "serif"],
         safelist: ['font-spectralsc'],
       },
+    },
+    screens: {
+      sm: "600px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
     },
   },
   plugins: [],
