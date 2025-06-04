@@ -152,14 +152,14 @@ export default function PageTemplate({ children, sidebar }: PageTemplateProps) {
       </div>
 
       {/* --- MAIN CONTENT --- */}
-      <div className="flex w-full max-w-[1200px] mx-auto mt-6 z-10">
+      <div className="flex w-full max-w-[1400px] mx-auto mt-6 z-10">
         {sidebar && (
           <aside className="bg-black/40 rounded-tl-2xl rounded-bl-2xl p-8 w-56 flex flex-col min-h-[500px] hidden sm:flex">
             {sidebar}
           </aside>
         )}
         <section className="flex-1 bg-black/70 rounded-tr-2xl rounded-br-2xl p-10 min-h-[500px] flex flex-col items-center shadow-xl">
-          <div className="w-full max-w-[800px]">{children}</div>
+          <div className="w-full max-w-[1000px]">{children}</div>
         </section>
       </div>
     </main>

@@ -1,13 +1,17 @@
 import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import PageTemplate from "app/components/ui/pagetemplate";
 import SidebarArticles from "app/components/ui/sidebararticles";
+import prisma from "app/db.server";
 import { register } from "app/auth.server";
 
-// Optional: Redirect logged-in users away from this page
 export async function loader({ request }: LoaderFunctionArgs) {
-  // ...optionally, redirect if logged in
-  return null;
+  // Fetch articles for the sidebar
+  const articles = await prisma.article.findMany({
+    select: { title: true, slug: true },
+    orderBy: { title: "asc" },
+  });
+  return json({ articles });
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -19,7 +23,7 @@ export async function action({ request }: ActionFunctionArgs) {
   }
   const username = formData.get("username");
   if (typeof username !== "string" || !username.trim()) {
-  return json({ error: "Username required" }, { status: 400 });
+    return json({ error: "Username required" }, { status: 400 });
   }
   try {
     // register returns a redirect response on success
@@ -34,9 +38,10 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function RegisterPage() {
   const actionData = useActionData<typeof action>();
+  const { articles } = useLoaderData<typeof loader>();
 
   return (
-    <PageTemplate sidebar={<SidebarArticles />}>
+    <PageTemplate sidebar={<SidebarArticles articles={articles} />}>
       <h1 className="text-2xl font-bold mb-6">Register</h1>
       <Form method="post" className="flex flex-col gap-4 max-w-xs mx-auto">
         {actionData?.error && (

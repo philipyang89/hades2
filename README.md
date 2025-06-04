@@ -1,6 +1,6 @@
 # Hades 2 Wiki
 
-A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CSS v4, and custom authentication.  
+A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CSS v4, and remix authentication.  
 
 ---
 
@@ -8,10 +8,10 @@ A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CS
 
 - ✨ Remix + Vite full-stack framework
 - 🎨 Tailwind CSS v4 styling with custom variables and fonts
-- ⚡️ shadcn/ui component library
-- 🔒 JWT authentication (secure cookie-based login/register)
-- 🗃️ Sidebar navigation is auto-generated from a single article metadata file
-- 📝 Each article is a standalone route for full flexibility
+- 🔒 Remix-auth authentication (secure cookie-based login/register)
+- 🗃️ Sidebar navigation is auto-generated from a single prisma seed
+- 📝 Each article can be easily written inside the /prisma/seed.js 
+- Future plans would be adding UI edition/deletion of articles + Nested Comments
 
 ---
 
@@ -33,6 +33,7 @@ A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CS
     ```sh
     pnpm prisma:migrate
     npx prisma generate
+    pnpm prisma db seed // to populate the articles
 5. **Run the development server:**
     ```sh
     pnpm dev
@@ -40,11 +41,13 @@ A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CS
     ```sh
     http://localhost:5173
 ## ✏️ Adding Articles
-- Edit app/list.ts to add your article's <b>title and slug</b>.
-- Create a new route file, e.g. app/routes/article.$slug.tsx.
+- Edit prisma/seed.js to add your article data.
+- No need to create new route files, the logic of article.$slug.tsx takes care of it.
 - The sidebar will update automatically!
 
 ## 👤 Authentication
-- /register and /login pages will handle user sign-up and sign-in.
+- Session-based login with cookies without JWTs
+- /register and /login routes will handle user sign-up and sign-in.
+- Login with either email or username.
 - Credentials will be securely hashed and stored.
-- JWT token is secure as a HTTP-only cookie.
+- Logout destroys the session cookie.
