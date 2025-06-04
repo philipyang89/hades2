@@ -4,6 +4,10 @@ export const articles = [
     slug: "artemis", // corresponds to /article/artemis
   },
   {
+    title: "Hades",
+    slug: "hades",
+  },
+  {
     title: "Bosses",
     slug: "bosses",
   },
