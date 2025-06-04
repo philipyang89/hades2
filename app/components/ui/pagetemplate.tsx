@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Link } from "@remix-run/react";
 
 type PageTemplateProps = {
   children: ReactNode;
@@ -16,7 +17,7 @@ export default function PageTemplate({ children, sidebar }: PageTemplateProps) {
       }}
     >
       {/* --- TOP AUTH BAR --- */}
-      <div className="w-full flex justify-end items-center px-4 h-11 z-30">
+      <div className="w-full flex justify-end items-center px-4 z-30 -mt-2">
         <div className="relative flex items-center h-10 min-w-[250px] pl-10 font-spectralsc">
           <img
             src="/NamePlate01.png"
@@ -24,12 +25,12 @@ export default function PageTemplate({ children, sidebar }: PageTemplateProps) {
             className="absolute inset-0 h-full w-full object-contain z-[-1] pointer-events-none"
             draggable={false}
           />
-          <button className="relative z-10 text-yellow-300 pl-2 px-1 hover:underline transition">
+          <Link to="/register" className="relative z-10 text-yellow-300 pl-2 px-1 hover:underline transition">
             Register
-          </button>
-          <button className="relative z-10 text-white pl-5 px-1 hover:underline transition">
+          </Link>
+          <Link to="/login" className="relative z-10 text-white pl-5 px-1 hover:underline transition">
             Log in
-          </button>
+          </Link>
         </div>
       </div>
 
