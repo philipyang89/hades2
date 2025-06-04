@@ -1,6 +1,7 @@
 # Hades 2 Wiki
 
-A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CSS v4, and remix authentication.  
+A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CSS v4, and remix authentication. 
+[https](https://hades2.onrender.com/)
 
 ---
 
