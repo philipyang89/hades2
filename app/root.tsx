@@ -1,4 +1,4 @@
-import tailwindStylesheetUrl from "./tailwind.css";
+import "./tailwind.css";
 import {
   Links,
   Meta,
@@ -9,7 +9,6 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: tailwindStylesheetUrl },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
