@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Link } from "@remix-run/react";
 import { Menu, User } from "lucide-react"; // Or use react-icons or SVG
 
 export default function MobileTopBar({ onSidebar, onAuth }: { onSidebar: () => void; onAuth: () => void }) {
@@ -15,7 +13,7 @@ export default function MobileTopBar({ onSidebar, onAuth }: { onSidebar: () => v
       <img
         src="/Hades_II_Logo.png"
         alt="Hades II"
-        className="h-8 object-contain mx-auto select-none"
+        className="h-18 pt-2 object-contain mx-auto select-none"
         draggable={false}
       />
       <button

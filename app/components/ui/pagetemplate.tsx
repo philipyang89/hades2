@@ -11,6 +11,12 @@ export default function PageTemplate({ children, sidebar }: PageTemplateProps) {
   const [mobileSidebar, setMobileSidebar] = useState(false);
   const [mobileAuth, setMobileAuth] = useState(false);
 
+  // Helper to close any overlays on click outside
+  function handleOverlayClick() {
+    setMobileSidebar(false);
+    setMobileAuth(false);
+  }
+
   return (
     <main
       className="relative min-h-screen w-full flex flex-col items-center pt-12 sm:pt-0"
@@ -20,7 +26,7 @@ export default function PageTemplate({ children, sidebar }: PageTemplateProps) {
         backgroundPosition: "center",
       }}
     >
-      {/* --- MOBILE TOP BAR (shows only <600px) --- */}
+      {/* --- MOBILE TOP BAR (visible <640px) --- */}
       <MobileTopBar
         onSidebar={() => setMobileSidebar(true)}
         onAuth={() => setMobileAuth(true)}
@@ -28,24 +34,46 @@ export default function PageTemplate({ children, sidebar }: PageTemplateProps) {
 
       {/* --- MOBILE SIDEBAR DRAWER --- */}
       {mobileSidebar && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex sm:hidden" onClick={() => setMobileSidebar(false)}>
-          <aside className="bg-black w-60 h-full p-6 rounded-r-2xl shadow-xl" onClick={e => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 z-[100] bg-black/40 sm:hidden"
+          onClick={handleOverlayClick}
+        >
+          <aside
+            className="bg-black w-60 h-full p-6 rounded-r-2xl shadow-xl z-[110] relative"
+            onClick={e => e.stopPropagation()}
+          >
             {sidebar}
           </aside>
         </div>
       )}
 
-      {/* --- MOBILE AUTH DRAWER --- */}
+      {/* --- MOBILE USER AUTH DROPDOWN --- */}
       {mobileAuth && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex sm:hidden" onClick={() => setMobileAuth(false)}>
-          <aside className="bg-black w-60 h-full p-6 rounded-l-2xl shadow-xl ml-auto" onClick={e => e.stopPropagation()}>
-            <Link to="/register" className="block text-yellow-300 mb-4 text-lg">Register</Link>
-            <Link to="/login" className="block text-white text-lg">Log in</Link>
-          </aside>
+        <div
+          className="fixed inset-0 z-[100] sm:hidden"
+          onClick={handleOverlayClick}
+        >
+          <div
+            className="absolute top-14 right-4 w-36 bg-black rounded-xl shadow-lg border border-[#222d33] flex flex-col p-3 z-[110]"
+            onClick={e => e.stopPropagation()}
+          >
+            <Link
+              to="/register"
+              className="block text-yellow-300 mb-2 text-lg hover:underline"
+            >
+              Register
+            </Link>
+            <Link
+              to="/login"
+              className="block text-white text-lg hover:underline"
+            >
+              Log in
+            </Link>
+          </div>
         </div>
       )}
 
-      {/* --- TOP AUTH BAR (HIDDEN <600px) --- */}
+      {/* --- TOP AUTH BAR (desktop only) --- */}
       <div className="w-full flex justify-end items-center px-4 z-30 -mt-2 hidden sm:flex">
         <div className="relative flex items-center h-10 min-w-[250px] pl-10 font-spectralsc">
           <img
@@ -54,16 +82,22 @@ export default function PageTemplate({ children, sidebar }: PageTemplateProps) {
             className="absolute inset-0 h-full w-full object-contain z-[-1] pointer-events-none"
             draggable={false}
           />
-          <Link to="/register" className="relative z-10 text-yellow-300 pl-2 px-1 hover:underline transition">
+          <Link
+            to="/register"
+            className="relative z-10 text-yellow-300 pl-2 px-1 hover:underline transition"
+          >
             Register
           </Link>
-          <Link to="/login" className="relative z-10 text-white pl-5 px-1 hover:underline transition">
+          <Link
+            to="/login"
+            className="relative z-10 text-white pl-5 px-1 hover:underline transition"
+          >
             Log in
           </Link>
         </div>
       </div>
 
-      {/* --- LOGO (HIDDEN <600px) --- */}
+      {/* --- LOGO (desktop only) --- */}
       <div className="flex justify-center w-full hidden sm:flex">
         <img
           src="/Hades_II_Logo.png"
@@ -73,20 +107,9 @@ export default function PageTemplate({ children, sidebar }: PageTemplateProps) {
         />
       </div>
 
-      {/* --- SEARCH BAR ROW (HIDDEN <600px) --- */}
-      <div className="w-full flex justify-center hidden sm:flex">
-        <div className="w-full max-w-[1200px] flex justify-end px-4">
-          <input
-            type="text"
-            placeholder="Search Hades 2 Wiki"
-            className="rounded px-4 py-2 bg-gray-200/90 text-gray-800 italic shadow border border-gray-400 focus:outline-none w-72 font-[500] text-lg mt-1 mb-2"
-          />
-        </div>
-      </div>
-
       {/* --- MAIN CONTENT CONTAINER --- */}
       <div className="flex w-full max-w-[1200px] mx-auto mt-6 z-10">
-        {/* Sidebar: HIDDEN <600px */}
+        {/* Sidebar: only desktop */}
         {sidebar && (
           <aside className="bg-black/40 rounded-tl-2xl rounded-bl-2xl p-8 w-56 flex flex-col min-h-[500px] hidden sm:flex">
             {sidebar}
