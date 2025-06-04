@@ -1,40 +1,31 @@
-# Welcome to Remix!
+# Hades 2 Wiki
 
-- 📖 [Remix docs](https://remix.run/docs)
+A modern, feature-rich community wiki for Hades 2, built with Remix, Tailwind CSS v4, and custom authentication.  
 
-## Development
+---
 
-Run the dev server:
+## 🚀 Features
 
-```shellscript
-npm run dev
-```
+- ✨ Remix + Vite full-stack framework
+- 🎨 Tailwind CSS v4 styling with custom variables and fonts
+- ⚡️ shadcn/ui component library
+- 🔒 JWT authentication (secure cookie-based login/register)
+- 🗃️ Sidebar navigation is auto-generated from a single article metadata file
+- 📝 Each article is a standalone route for full flexibility
 
-## Deployment
+---
 
-First, build your app for production:
+## 🛠️ Development Setup
 
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+1. **Clone the repo:**
+   ```sh
+   git clone https://github.com/philipyang89/hades2.git
+   cd hades2-wiki
+2. **Install dependencies (using pnpm):**
+    ```sh
+    pnpm install
+3. **Set up environment variables:**
+- Copy .env.example to .env and fill in your values, e.g.:
+    ```sh
+    JWT_SECRET=your_super_secret_jwt_key
+    DATABASE_URL=postgresql://user:password@localhost:5432/dbname
