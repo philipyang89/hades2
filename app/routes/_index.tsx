@@ -15,7 +15,7 @@ export default function Index() {
         <img src="/Hades_II_Logo.png" alt="Hades 2 Logo" />
         <Link
           to="/main"
-          className="scroll-down-hover font-spectralsc text-4xl font-medium pb-8 transition"
+          className="redirect-main font-spectralsc text-4xl font-medium pb-8 transition"
         >
           To Main Page
         </Link>

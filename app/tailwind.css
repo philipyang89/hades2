@@ -25,13 +25,13 @@ body {
   font-family: "Crimson Text";
 }
 
-.scroll-down-hover {
+.redirect-main {
   padding-bottom: 10rem;
   display: inline-block;
   transition: color 0.25s;
   color: var(--green);
 }
-.scroll-down-hover:hover {
+.redirect-main:hover {
   color: var(--light-green);
 }
 
